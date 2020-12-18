@@ -1,0 +1,158 @@
+body {
+    font-family: sans-serif;
+    background-color: #e9ebee;
+}
+.wrapper {
+    margin: 0 auto;
+    width: 500px;
+    background-color: #fff;
+    padding-top: 2%;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.wrapper .info-air {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.wrapper .info-air .info-place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ab2120;
+    color: #fff;
+    padding: 8px 0 8px 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.wrapper .info-air .info-table {
+    text-decoration: none;
+    background-color: #d52827;
+    color: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.wrapper .info-air .info-table .avatar-noti {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+   background-image: url('https://picsum.photos/70/70');
+}
+.wrapper .info-air .info-table .info-time {
+  text-align: center;
+  padding: 8px 0 8px 0;
+  font-size: 14px;
+}
+
+.wrapper .info-air .info-table table {
+   margin-top: 16px;
+}
+
+.wrapper .info-air .info-table table tr{
+    height: 70px;
+}
+.wrapper .info-air .info-table table tr td {
+    text-align: center;
+}
+
+
+.wrapper .interactive {
+    width: 500px;
+    margin-bottom: 100px;
+    border-radius: 8px;
+    
+}
+.wrapper .interactive .line-short {
+    width: 480px;
+    margin: 0 auto;
+    height: 1px;
+    background-color: rgb(221, 221, 221);
+    margin-bottom: 4px;
+    
+}
+.wrapper .interactive .line-long {
+    height: 1px;
+    background-color: rgb(221, 221, 221);
+    margin-top: 24px;
+    margin-bottom: 10px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.wrapper .interactive .selection-bar {
+    display: flex;
+    width: 500px;
+    height: 25px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.wrapper .interactive .selection-bar .comment  {
+    position: relative;
+    width: 100%;
+}
+.wrapper .interactive .selection-bar .comment .post-comment {
+    display: none;
+    position: absolute;
+    width: 500px;
+    background-color: #fff;
+    left: -10px;
+    top: 50px;
+    padding-bottom: 10px;
+}
+.wrapper .interactive .selection-bar .comment .post-comment .comment-element{
+    list-style-type: none;
+    background: white;
+    box-sizing: border-box;
+    padding: 12px 0 0 24px;
+}
+
+.wrapper .interactive .selection-bar .comment .post-comment .input-comment{
+    display: flex;
+    margin-left: 9px;
+}
+.wrapper .interactive .selection-bar .comment .post-comment .input-comment img{
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    background-size: cover;
+}
+.wrapper .interactive .selection-bar .comment .post-comment .input-comment input{
+    height: 34px;
+    width: 420px;
+    margin-left: 12px;
+    border-radius: 20px;
+    border: 1px solid #ccd0d5;
+    padding-left: 10px;
+}
+.wrapper .interactive .selection-bar .comment .post-comment .input-comment input:focus{
+    outline: none;
+}
+.wrapper .interactive .selection-bar a {
+    border: none;
+    background-color: white;
+    padding: 10px 48px;
+    font-weight: 600;
+    color: #606770;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-flex;
+    cursor: pointer;
+}
+.wrapper .interactive .selection-bar  img {
+    height: 15px;
+    width: 15px;
+    padding-top: 1px;
+}
+.wrapper .interactive .selection-bar  a span {
+    margin-left: 2px;
+}
+
+
+.wrapper .interactive .selection-bar a:hover {
+    background-color: rgb(236, 236, 236);
+}

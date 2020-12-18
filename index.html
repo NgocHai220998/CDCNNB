@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Comment</title>
+    <script
+      src="https://unpkg.com/react@latest/umd/react.development.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+    <script
+      src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/babel-standalone@latest/babel.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Fonts to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <span id="my-data" style="display: none;">1581129</span>
+      <div class="info-air">
+        <div class="info-place">
+          <div><h2 style="margin: 5px auto;" id="name-city">Thành phố Hà Nội</h2></div>
+          <div style="font-size: 14px">
+            <span id="name-city__location">Hà Nội (21.0264, 105.8218)</span>
+          </div>
+        </div>
+        <div class="info-table">
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div>
+                  <div>Nhiệt độ cảm nhận được</div>
+                  <div style="font-size: 16px; font-weight: 600"><span id="min-max">30 (°C)</span></div>
+                </div>
+              </td>
+              <td style="display: flex; justify-content: center">
+                <div>
+                  <img id="image-icon" width="100px" height="100px" src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
+                </div>
+              </td>
+              <td>
+                <span id="weather-status" style="font-weight: 600; font-size: 16px; text-transform: capitalize;">Có mây</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <div style="font-weight: 600"><span id="toc-do-gio">0.5</span></div>
+                  <div>Tốc độ gió (m/s)</div>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div style="font-weight: 600"><span id="do-am">77</span></div>
+                  <div>Độ ẩm (%)</div>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div style="font-weight: 600"><span id="nhiet-do">25.2</span></div>
+                  <div>Nhiệt độ (°C)</div>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="info-time">
+            <span>Cập nhật:</span>
+            <span id="date">14s/12/2020 00:00</span>
+          </div>
+
+          <script type="text/babel">
+            const {
+              colors,
+              CssBaseline,
+              ThemeProvider,
+              Typography,
+              Container,
+              makeStyles,
+              createMuiTheme,
+              Box,
+              SvgIcon,
+              Link,
+              TextField,
+              FormControl,
+              RadioGroup,
+              FormControlLabel,
+              Radio,
+            } = MaterialUI;
+
+            // Create a theme instance.
+            const theme = createMuiTheme({
+              palette: {
+                primary: {
+                  main: "#000",
+                },
+                secondary: {
+                  main: "#000",
+                },
+                error: {
+                  main: colors.red.A400,
+                },
+                background: {
+                  default: "#fff",
+                },
+              },
+            });
+
+            function LightBulbIcon(props) {
+              return (
+                <SvgIcon {...props}>
+                  <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" />
+                </SvgIcon>
+              );
+            }
+
+            const useStyles = makeStyles((theme) => ({
+              root: {
+                margin: theme.spacing(6, 0, 3),
+              },
+              lightBulb: {
+                verticalAlign: "middle",
+                marginRight: theme.spacing(1),
+              },
+            }));
+
+            const useStylesCanlendar = makeStyles((theme) => ({
+              container: {
+                display: "flex",
+                flexWrap: "wrap",
+                width: "100%",
+                border: "1px solid #c1c1c1",
+                borderRadius: 8,
+                justifyContent: "center",
+                marginTop: theme.spacing(1)
+              },
+              textField: {
+                marginLeft: theme.spacing(10),
+                
+                width: 200,
+                marginTop: theme.spacing(1),
+                marginBottom: theme.spacing(1)
+              },
+            }));
+            function Canlendar() {
+              const classes = useStylesCanlendar();
+              const [value, setValue] = React.useState("");
+              const [error, setError] = React.useState(false);
+              const [helperText, setHelperText] = React.useState(
+                "Choose wisely"
+              );
+              const handleRadioChange = (event) => {
+                setValue(event.target.value);
+                let spanData = document.getElementById("my-data");
+                spanData.innerHTML = event.target.value;
+                setHelperText(" ");
+                setError(false);
+              };
+              const handleSubmit = (event) => {
+                event.preventDefault();
+                if (value === "best") {
+                  setHelperText("You got it!");
+                  setError(false);
+                } else if (value === "worst") {
+                  setHelperText("Sorry, wrong answer!");
+                  setError(true);
+                } else {
+                  setHelperText("Please select an option.");
+                  setError(true);
+                }
+              };
+              return (
+                <form className={classes.container} noValidate>
+                  <FormControl>
+                    <RadioGroup
+                      aria-label="quiz"
+                      name="quiz"
+                      row
+                      value={value}
+                      onChange={handleRadioChange}
+                    >
+                      <FormControlLabel
+                        value="1581129"
+                        control={<Radio />}
+                        label="Hà Nội"
+                      />
+                      <FormControlLabel
+                        value="1905468"
+                        control={<Radio />}
+                        label="Đà Nẵng"
+                      />
+                      <FormControlLabel
+                        value="1580578"
+                        control={<Radio />}
+                        label="Hồ Chí Minh"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </form>
+              );
+            }
+            function App() {
+              return (
+                <Container>
+                  <div style={{ marginTop: 12, marginBottom: 8 }}>
+                    <Canlendar />
+                  </div>
+                </Container>
+              );
+            }
+
+            ReactDOM.render(
+              <ThemeProvider theme={theme}>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                <CssBaseline />
+                <App />
+              </ThemeProvider>,
+              document.querySelector("#root")
+            );
+          </script>
+        </div>
+      </div>
+      <div class="interactive">
+        <div id="root"></div>
+        <div style="padding-left: 25px;" class="container mb-2">
+          <div id="result-review" style="width: 98%; margin: 0 auto; text-transform: uppercase;" class="btn btn-danger">Nên đi</div>
+        </div>
+        <div class="selection-bar">
+          <div class="comment">
+            <div
+              style="
+                border: 1px solid #c1c1c1;
+                width: 94%;
+                margin-left: 3%;
+                border-radius: 8px;
+              "
+            >
+              <a
+                class="btn-comment"
+                id="btn-submit"
+                style="
+                  width: 100%;
+                  border-radius: 8px;
+                  display: flex;
+                  justify-content: center;
+                "
+              >
+                <span style="font-size: 15px">Đánh giá</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center;" class="mt-5">
+          <h3>Với thời tiết này, nếu là bạn, bạn có đi không?</h3>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button id="click-yes" style="width: 230px" type="button" class="btn btn-primary">CÓ</button>
+            <button id="click-no" style="width: 230px" type="button" class="btn btn-secondary">KHÔNG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
